@@ -1,0 +1,10 @@
+/data
+/papers
+/weights
+/summaries
+*.swp
+*.pyc
+*.zip
+*.xlsx
+dmn_original.py
+*.gz
