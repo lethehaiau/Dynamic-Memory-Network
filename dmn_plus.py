@@ -222,7 +222,7 @@ class DMN_PLUS(object):
         
         # concatenate fact vectors and attentions for input into attGRU
         gru_inputs = tf.concat([fact_vecs, attentions], 2)
-
+        #gru_inputs (100, 68, 81)
         with tf.variable_scope('attention_gru', reuse=reuse):
             _, episode = tf.nn.dynamic_rnn(AttentionGRUCell(self.config.hidden_size),
                     gru_inputs,
@@ -273,7 +273,7 @@ class DMN_PLUS(object):
                 # get a new episode
                 print '==> generating episode', i
                 episode = self.generate_episode(prev_memory, q_vec, fact_vecs, i)
-
+                #episode (?, 80)
                 # untied weights for memory update
                 with tf.variable_scope("hop_%d" % i):
                     prev_memory = tf.layers.dense(tf.concat([prev_memory, episode, q_vec], 1),
